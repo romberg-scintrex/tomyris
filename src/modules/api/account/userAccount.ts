@@ -9,14 +9,12 @@ function getBaseURL(): string {
   return `${config.apiUrl}`;
 }
 
-// Payload interfaces
 export interface RegisterUserPayload {
   username: string;
   email: string;
-  name: string;
   password: string;
   recaptchaResponse?: string;
-  role?: string;
+  role: number;
 }
 
 export interface ResetPasswordPayload {

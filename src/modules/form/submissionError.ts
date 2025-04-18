@@ -11,9 +11,6 @@ export class SubmissionError<T = Record<string, any>> extends Error {
   }
 }
 
-/**
- * Wrap async submit with error handling for react-final-form
- */
 export function withSubmissionError<T>(
   onSubmit: (data: T) => Promise<any>
 ): (data: T) => Promise<any> {
