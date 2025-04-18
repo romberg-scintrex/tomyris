@@ -1,0 +1,90 @@
+@import '../../styles/base';
+
+.widget-user__profile {
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle !important;
+
+  .bp5-light & {
+    background-color: #f4f5f6;
+  }
+
+  .bp5-dark & {
+    background-color: $dark-background-color;
+  }
+
+  svg {
+    vertical-align: middle !important;
+  }
+}
+
+.bp5-menu li,
+.bp5-menu li a {
+  color: inherit;
+}
+
+.widget-user__avatar-wrapper {
+  height: 60px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.widget-user__avatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.widget-user__link {
+  margin-right: 20px;
+  font-size: 0.9 * $font-size;
+}
+
+.widget-user__burger,
+.widget-user__menu-helper {
+  display: none !important;
+}
+
+.widget-user__menu a {
+  color: inherit !important;
+}
+
+.widget-user__user__username {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .widget-user__avatar-wrapper {
+    display: none;
+  }
+
+  .widget-user__burger,
+  .widget-user__menu-helper {
+    display: block !important;
+    cursor: pointer;
+
+    span.bp5-icon {
+      float: left;
+    }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .widget-user__avatar-menu {
+    margin-right: 10px;
+  }
+
+  .widget-user__burger,
+  .widget-user__menu-helper {
+    display: block !important;
+    cursor: pointer;
+
+    span.bp5-icon {
+      float: left;
+    }
+  }
+}

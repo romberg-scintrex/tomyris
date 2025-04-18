@@ -1,0 +1,58 @@
+@import '../../styles/base';
+
+.header {
+  height: 50px;
+  color: white;
+
+  .bp5-light & {
+    background-color: $primary-color !important;
+    height: 50px;
+  }
+
+  .bp5-dark & {
+    color: $dark-text-color !important;
+    background-color: $dark-blue-main-background-color !important;
+    box-shadow:
+      0 0 0 1px rgba(17, 20, 24, 0.1),
+      0 1px 1px rgba(17, 20, 24, 0.2);
+  }
+
+  a {
+    color: white;
+
+    .bp5-dark & {
+      color: $dark-text-color !important;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.header__wrapper {
+  margin: 0 auto;
+}
+
+.header__logo {
+  margin-top: 3px;
+  height: 40px;
+}
+
+.header__title {
+  margin-left: 20px;
+  margin-right: 0;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.header__subtitle {
+  font-size: 11px;
+  line-height: 22px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .header__subtitle-wrapper {
+    display: none;
+  }
+}

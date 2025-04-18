@@ -1,0 +1,14 @@
+@import '../../styles/base';
+
+.footer {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 15px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .is-course-chapter-problem .footer {
+    display: none;
+  }
+}

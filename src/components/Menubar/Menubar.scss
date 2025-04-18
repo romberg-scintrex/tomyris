@@ -1,0 +1,68 @@
+@import '../../styles/base';
+
+.menubar {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  *:focus {
+    outline: none;
+  }
+
+  .bp5-tab {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 0;
+    line-height: 50px;
+    height: 50px;
+    color: $primary-color;
+  }
+
+  .bp5-tab:hover {
+    background-color: $tertiary-background-color;
+  }
+
+  .bp5-tab[aria-selected='true'] {
+    font-weight: 600;
+    background-color: $tertiary-background-color !important;
+    box-shadow: inset 0 -3px 0 $secondary-background-color;
+    color: $text-color;
+  }
+
+  .bp5-tab-indicator-wrapper {
+    height: 50px !important;
+    z-index: 1;
+  }
+
+  .bp5-tab-indicator {
+    background-color: red !important;
+  }
+}
+
+.bp5-dark .menubar {
+  .bp5-tab {
+    color: inherit;
+
+    a:hover {
+      color: $dark-text-color;
+    }
+  }
+
+  .bp5-tab:hover {
+    color: $dark-text-color;
+    background-color: $dark-tertiary-background-color;
+  }
+
+  .bp5-tab[aria-selected='true'] {
+    font-weight: 600;
+    background-color: $dark-tertiary-background-color !important;
+    color: inherit;
+    border-bottom: 3px solid $gray3;
+    box-shadow: none;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .menubar {
+    display: none;
+  }
+}
