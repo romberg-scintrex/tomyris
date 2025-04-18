@@ -1,5 +1,4 @@
-'use client';
-
+import type { JSX } from 'react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -20,37 +19,33 @@ interface WebConfig {
   role?: Record<string, any>;
 }
 
-interface RegisteredUser {
-  username: string;
-  email: string;
-}
-
-interface RegisterFormValues {
-  username: string;
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword?: string;
-  recaptchaResponse?: string;
-  role?: 'contributor' | 'customer';
-}
-
 interface RegisterPageProps {
   onRegisterUser: (data: RegisterFormValues) => Promise<void>;
+  onGetWebConfig: () => Promise<WebConfig>;
 }
 
-function RegisterPage({ onRegisterUser }: RegisterPageProps) {
+function RegisterPage({ onRegisterUser, onGetWebConfig }: RegisterPageProps): JSX.Element {
+  
   const navigate = useNavigate();
-  const [config, setConfig] = useState<WebConfig | undefined>(undefined);
-  const [registeredUser, setRegisteredUser] = useState<RegisteredUser | undefined>(undefined);
+
+  const [config, setConfig] = useState<WebConfig>();
+  const [registeredUser, setRegisteredUser] = useState<RegisteredUser>();
   const [isInternalAuthEnabled, setIsInternalAuthEnabled] = useState(true);
+
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const configData = await onGetWebConfig();
+      setConfig(configData);
+    };
+    fetchConfig();
+  }, [onGetWebConfig]);
 
   const handleRegister = async (data: RegisterFormValues) => {
     await onRegisterUser(data);
     setRegisteredUser({ username: data.username, email: data.email });
 
-    const role = data.role || 'customer';
-    navigate(role === 'contributor' ? '/contributor/dashboard' : '/customer/dashboard');
+    const role = data.role || 2;
+    navigate(role === 1 ? '/contributor/dashboard' : '/customer/dashboard');
   };
 
   const registerFormProps = {
@@ -83,7 +78,6 @@ function RegisterPage({ onRegisterUser }: RegisterPageProps) {
             </div>
           </div>
         )}
-
       </Card>
     </SingleColumnLayout>
   );
@@ -91,15 +85,9 @@ function RegisterPage({ onRegisterUser }: RegisterPageProps) {
 
 const mapDispatchToProps = (dispatch: any) => ({
   onRegisterUser: (data: RegisterFormValues) => {
-    const payload = {
-      username: data.username,
-      password: data.password,
-      email: data.email,
-      recaptchaResponse: data.recaptchaResponse,
-      // role: data.role,
-    };
-    return dispatch(registerActions.registerUser(payload));
+    return dispatch(registerActions.registerUser(data));
   },
+  onGetWebConfig: () => dispatch(registerActions.getWebConfig()),
 });
 
 export default connect(null, mapDispatchToProps)(RegisterPage);
